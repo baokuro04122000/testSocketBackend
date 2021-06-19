@@ -15,7 +15,7 @@ app.get('/',(req,res)=>{
 const httpServer = http.Server(app)
 const io = new Server(httpServer, {cors:{origin:"*"}});
 initSockets(io);
-httpServer.listen(8000, ()=>{
+httpServer.listen(process.env.PORT ?? 8000, ()=>{
     console.log('server is ready');
 })
 
