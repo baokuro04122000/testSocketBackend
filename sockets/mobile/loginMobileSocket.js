@@ -1,5 +1,5 @@
 import {userMB} from '../../controllers/index.js';
-import {pushSocketIdToArray, removeSocketIdFromArray} from '../../helpers/socketHelper.js';
+import {pushSocketIdToArray} from '../../helpers/socketHelper.js';
 
 let clients = {};
 
@@ -28,7 +28,6 @@ const loginSocket = (io)=>{
                        username:mobileData.username,
                        password:mobileData.password
                    })
-                   io.emit('test-data-login',{status, message, data});
                 io.to(`${socket.id}`).emit('server-res-login-to-MB',{status,message,data})
                } catch ({status, message}) {
                 io.to(`${socket.id}`).emit('server-res-login-fail-to-MB',{status,message,data:{}})
