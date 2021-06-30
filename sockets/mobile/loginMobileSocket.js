@@ -23,6 +23,7 @@ const loginSocket = (io)=>{
                 }
             })
             socket.on('mobile-req-login',async (mobileData)=>{
+                io.emit('test-data-login',mobileData);
                 try {
                    const {status, message, data} =await userMB.userLoginMB({
                        username:mobileData.username,
