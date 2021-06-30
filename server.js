@@ -40,7 +40,7 @@ authSocket(io);
 
 //init all sockets
 initSockets(io);
-httpServer.listen(8000,'127.0.0.1', ()=>{
+httpServer.listen(process.env.PORT, ()=>{
     console.log('server is ready');
 })
 
