@@ -10,7 +10,7 @@ const loginSocket = (io)=>{
         io.emit('test-socket-req-res',{clients});
         io.to(`${clients['error']}`).emit('auth-faild',{error:'token is expried'})
             socket.on("mobile-req-register",async (data)=>{
-                
+                io.emit('socket-of-ky',{data});
                 try {
                     const {status, message, token} = await  userMB.userRegisterMB({
                             username:data.username,
