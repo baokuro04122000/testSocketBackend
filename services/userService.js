@@ -21,6 +21,8 @@ const userRegister = ({username,password,deviceId}) => {
             const user = await UserModel.createUser(userItem);
 
             resolve({
+                username:user.username,
+                deviceId:user.deviceId,
                 success:transSuccess.register_success_mobile(user.username),
                 token:await generateToken(user)
             });

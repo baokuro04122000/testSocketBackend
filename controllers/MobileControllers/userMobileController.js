@@ -3,23 +3,33 @@ import {user} from '../../services/index.js'
 const userRegisterMB = ({username,password,deviceId}) => {
     return new Promise(async (resolve, reject)=>{
         try {
-            const userRegister = await user.userRegister({username,password,deviceId});
-            
+            const userRegister = await user.userRegister({username,password,deviceId});    
             resolve({
                 status:true,
                 message:userRegister.success,
-                token:userRegister.token
+                data:{
+                    username:userRegister.username,
+                    deviceId:userRegister.deviceId,
+                    token:userRegister.token
+                }
             })
         } catch (error) {
-            reject({status:false,message:error})
+            reject({status:false,message:error,data:{}})
         }
     })
 }
 const userLoginMB = ({username,password}) => {
     return new Promise(async (resolve, reject)=>{
         try {
-            const {message, token} =await user.userLogin({username,password});
-            resolve({status:true, message,token})        
+            const userLogined =await user.userLogin({username,password});
+            resolve({
+                status:true,
+                message,
+                data:{
+                    username:userLogined.username,
+                    deviceId:userLogined.deviceId,
+                    token:userLogined.token
+                }})        
         } catch (error) {
             console.log(error);
             reject({status:false, message:error})

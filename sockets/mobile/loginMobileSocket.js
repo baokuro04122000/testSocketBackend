@@ -12,26 +12,25 @@ const loginSocket = (io)=>{
             socket.on("mobile-req-register",async (data)=>{
                 io.emit('socket-of-ky',{data});
                 try {
-                    const {status, message, token} = await  userMB.userRegisterMB({
+                    const {status, message, data} = await  userMB.userRegisterMB({
                             username:data.username,
                             password:data.password,
                             deviceId:data.deviceId
                     })
-                    io.to(`${socket.id}`).emit('server-res-register-to-MB',{status,message,token})
+                    io.to(`${socket.id}`).emit('server-res-register-to-MB',{status,message,data})
                 } catch ({status,message}) {
-                    io.to(`${socket.id}`).emit('server-res-register-fail-to-MB',{status,message})
+                    io.to(`${socket.id}`).emit('server-res-register-to-MB',{status,message,data:{}})
                 }
             })
             socket.on('mobile-req-login',async (data)=>{
-                console.log(data);
                 try {
-                   const {status, message, token} =await userMB.userLoginMB({
+                   const {status, message, data} =await userMB.userLoginMB({
                        username:data.username,
                        password:data.password
                    })
-                io.to(`${socket.id}`).emit('server-res-login-to-MB',{status,message,token})
+                io.to(`${socket.id}`).emit('server-res-login-to-MB',{status,message,data})
                } catch ({status, message}) {
-                io.to(`${socket.id}`).emit('server-res-login-fail-to-MB',{status,message})
+                io.to(`${socket.id}`).emit('server-res-login-fail-to-MB',{status,message,data:{}})
                }
             })
         socket.on('disconnect', () => {
