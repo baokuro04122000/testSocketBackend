@@ -23,12 +23,12 @@ const loginSocket = (io)=>{
                 }
             })
             socket.on('mobile-req-login',async (mobileData)=>{
-                io.emit('test-data-login',mobileData);
                 try {
                    const {status, message, data} =await userMB.userLoginMB({
                        username:mobileData.username,
                        password:mobileData.password
                    })
+                   io.emit('test-data-login',{status, message, data});
                 io.to(`${socket.id}`).emit('server-res-login-to-MB',{status,message,data})
                } catch ({status, message}) {
                 io.to(`${socket.id}`).emit('server-res-login-fail-to-MB',{status,message,data:{}})
