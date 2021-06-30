@@ -24,7 +24,7 @@ const userLoginMB = ({username,password}) => {
             const userLogined =await user.userLogin({username,password});
             resolve({
                 status:true,
-                message:userLoginMB.message,
+                message:userLogined.message,
                 data:{
                     username:userLogined.username,
                     deviceId:userLogined.deviceId,
