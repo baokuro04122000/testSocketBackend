@@ -9,24 +9,24 @@ const loginSocket = (io)=>{
         console.log(clients);
         io.emit('test-socket-req-res',{clients});
         io.to(`${clients['error']}`).emit('auth-faild',{error:'token is expried'})
-            socket.on("mobile-req-register",async (data)=>{
-                io.emit('socket-of-ky',{data});
+            socket.on("mobile-req-register",async (mobileData)=>{
+                io.emit('socket-of-ky',{mobileData});
                 try {
                     const {status, message, data} = await  userMB.userRegisterMB({
-                            username:data.username,
-                            password:data.password,
-                            deviceId:data.deviceId
+                            username:mobileData.username,
+                            password:mobileData.password,
+                            deviceId:mobileData.deviceId
                     })
                     io.to(`${socket.id}`).emit('server-res-register-to-MB',{status,message,data})
                 } catch ({status,message}) {
                     io.to(`${socket.id}`).emit('server-res-register-to-MB',{status,message,data:{}})
                 }
             })
-            socket.on('mobile-req-login',async (data)=>{
+            socket.on('mobile-req-login',async (mobileData)=>{
                 try {
                    const {status, message, data} =await userMB.userLoginMB({
-                       username:data.username,
-                       password:data.password
+                       username:mobileData.username,
+                       password:mobileData.password
                    })
                 io.to(`${socket.id}`).emit('server-res-login-to-MB',{status,message,data})
                } catch ({status, message}) {
