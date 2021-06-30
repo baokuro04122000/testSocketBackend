@@ -9,6 +9,9 @@ import {
 const router = express.Router();
 
 let initRoutes = (app) => {
+    router.get('/',(req,res)=>{
+        res.send("hello world");
+    })
     router.post('/api/signin',userAdmin.signIn);
     router.post('/api/addContact',isAuth,contactAdmin.addContact)
     router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment)
