@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
+import dotenv from 'dotenv';
+dotenv.config();
 const connectDB = () =>{
-    mongoose.Promise = bluebird;
-    mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/amazona', {
+  mongoose.Promise = bluebird;
+  const url = `mongodb+srv://${process.env.USER_NAME_MONGODB}:${process.env.PASSWORD_MONGODB}@cluster0.haxcj.mongodb.net/${process.env.DATABASE_NAME_MONGODB}?retryWrites=true&w=majority`
+  mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
