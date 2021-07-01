@@ -20,7 +20,6 @@ const userRegisterMB = ({username,password,deviceId}) => {
 }
 const userLoginMB = ({username,password}) => {
     return new Promise(async (resolve, reject)=>{
-        console.log(username,password);
         try {
             const userLogined =await user.userLogin({username,password});
             resolve({

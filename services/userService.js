@@ -9,9 +9,7 @@ const userRegister = ({username,password,deviceId}) => {
     return new Promise(async (resolve,reject)=>{
         try {   
             const userExist = await UserModel.findUserByDeviceId(deviceId);
-            if(userExist){
-                reject(transErrors.account_existed);
-            }
+            if(userExist) throw   reject(transErrors.account_existed);
             let saft = bcrypt.genSaltSync(saltRounds);
             let userItem = {
                 username:username,
