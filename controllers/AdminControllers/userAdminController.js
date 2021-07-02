@@ -9,6 +9,17 @@ const signIn =async (req,res)=>{
         res.status(401).send({message: err})
     }   
 }
+const signUp = async (req,res)=>{
+    
+    const {username,password,deviceId} = req.body;
+    try {
+        const data = await user.userRegister({username,password,deviceId});
+        res.send(data);
+    } catch (error) {
+        res.status(401).send({message:error})        
+    }
+}
 export default {
-    signIn
+    signIn,
+    signUp
 }

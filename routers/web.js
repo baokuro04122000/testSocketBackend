@@ -12,9 +12,12 @@ let initRoutes = (app) => {
     router.get('/',(req,res)=>{
         res.send("hello world");
     })
+    router.post('/api/signup',userAdmin.signUp);
     router.post('/api/signin',userAdmin.signIn);
-    router.post('/api/addContact',isAuth,contactAdmin.addContact)
-    router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment)
+    router.post('/api/getContact',contactAdmin.getPhones);
+    router.post('/api/getNameContact',contactAdmin.getAllNamePhones);
+    router.post('/api/addContact',isAuth,contactAdmin.addContact);
+    router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment);
     return app.use('/',router);
 }
 export default initRoutes;

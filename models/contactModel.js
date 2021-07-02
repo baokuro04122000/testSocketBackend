@@ -14,6 +14,12 @@ export const ContactSchema = new Schema(
 ContactSchema.statics = {
     createContact(item){
         return this.create(item);
+    },
+    getPhonesByName(name){
+        return this.find({name:name}).exec();
+    },
+    getAllNamePhonesById(id){
+        return this.find({adminId:id}).exec();
     }
 }
 

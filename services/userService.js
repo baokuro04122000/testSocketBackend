@@ -9,7 +9,7 @@ const userRegister = ({username,password,deviceId}) => {
     return new Promise(async (resolve,reject)=>{
         try {   
             const userExist = await UserModel.findUserByDeviceId(deviceId);
-            if(userExist) throw   reject(transErrors.account_existed);
+            if(userExist) throw  reject(transErrors.account_existed);
             let saft = bcrypt.genSaltSync(saltRounds);
             let userItem = {
                 username:username,
@@ -17,10 +17,11 @@ const userRegister = ({username,password,deviceId}) => {
                 password:bcrypt.hashSync(password,saft)
             };
             const user = await UserModel.createUser(userItem);
-
             resolve({
+                _id:user._id,
                 username:user.username,
                 deviceId:user.deviceId,
+                isAdmin:user.isAdmin,
                 success:transSuccess.register_success_mobile(user.username),
                 token:await generateToken(user)
             });
@@ -34,8 +35,8 @@ const userRegister = ({username,password,deviceId}) => {
 const userLogin = ({username,password}) => {
     return new Promise(async (resolve,reject)=>{
         const userInfo = await UserModel.findUserByUsername(username);
-        if(!userInfo) throw reject('Invalid email or password')
-        const checkPass =await userInfo.comparePassword(password);
+        if(!userInfo) throw reject('Invalid email or password');
+        const checkPass = await userInfo.comparePassword(password);
         if(checkPass){
             resolve({
                 _id:userInfo._id,
@@ -45,7 +46,9 @@ const userLogin = ({username,password}) => {
                 isAdmin:userInfo.isAdmin,
                 token:await generateToken(userInfo)
             })
-        }    
+        }else{
+            reject('Invalid email or password');
+        }   
     })
 }
 export default {
