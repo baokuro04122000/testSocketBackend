@@ -6,9 +6,9 @@ export const ContactSchema = new Schema(
         adminId:{type:String, required:true},
         name:{type:String,required:true, unique:true},
         phones:{type:Array,required:true},
-    },
-    {
-        timestamps:true,
+        createdAt:{type:Number,default: Date.now()},
+        updatedAt:{type:Number,default:null},
+        deletedAt:{type:Number,default:null}
     }
 );
 ContactSchema.statics = {

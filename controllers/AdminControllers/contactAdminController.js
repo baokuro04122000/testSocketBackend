@@ -15,7 +15,7 @@ const getPhones = async (req,res) => {
     const {name} = req.body;
     try {
         const phones = await contact.getPhones({name});
-        res.send({phones})
+        res.send(phones)
     } catch (error) {
         res.send({message:error})
     }

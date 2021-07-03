@@ -14,7 +14,7 @@ const getPhones = ({name})=>{
     return new Promise(async (resolve,reject)=>{
         try {
             const phones = await ContactModel.getPhonesByName(name);
-            resolve(phones[0].phones);
+            resolve(phones[0]);
         } catch (error) {
             reject(error)
         }
