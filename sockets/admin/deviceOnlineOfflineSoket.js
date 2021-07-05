@@ -8,7 +8,7 @@ const onlineOfflineDevices = (io)=>{
         clients =await pushSocketIdToArray(clients,socket.userId,socket.id);
         
         socket.on('disconnect', () => {
-          clients = removeSocketIdFromArray(clients, socket.userId, socket.id);
+          delete clients[socket.userId];
         })
     })
 }
