@@ -22,7 +22,7 @@ const userRegister = ({username,password,deviceId}) => {
                 username:user.username,
                 deviceId:user.deviceId,
                 isAdmin:user.isAdmin,
-                success:transSuccess.register_success_mobile(user.username),
+                message:transSuccess.register_success_mobile(user.username),
                 token:await generateToken(user)
             });
         } catch (error) {
