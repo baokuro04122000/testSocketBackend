@@ -6,8 +6,8 @@ const ChatAppSocket = (io)=>{
     io.on('connection',async (socket) => {
         clients = await pushSocketIdToArray(clients,socket.userId,socket.id);
 
-        socket.on('req-chat-text',({sender,receiver,text})=>{
-            io.to(`${clients[receiver]}`).emit('res-chat-text',{sender,text});
+        socket.on('req-chat-text',({senderId,receiverId,text})=>{
+            io.to(`${clients[receiverId]}`).emit('res-chat-text',{senderId,text});
         })
     
         socket.on('disconnect', () => {
