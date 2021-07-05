@@ -6,7 +6,10 @@ const signIn =async (req,res)=>{
         const data = await user.userLogin({username,password});
         res.send(data);
     }catch(err){
-        res.status(401).send({message: err})
+        res.send({
+            success:false,
+            message: err
+        })
     }   
 }
 const signUp = async (req,res)=>{
@@ -16,7 +19,10 @@ const signUp = async (req,res)=>{
         const data = await user.userRegister({username,password,deviceId});
         res.send(data);
     } catch (error) {
-        res.status(401).send({message:error})        
+        res.send({
+            success:false,
+            message:error
+        })        
     }
 }
 export default {
