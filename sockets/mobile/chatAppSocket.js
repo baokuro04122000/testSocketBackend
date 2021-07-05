@@ -5,9 +5,9 @@ let clients = {};
 const ChatAppSocket = (io)=>{
     io.on('connection',async (socket) => {
         clients = await pushSocketIdToArray(clients,socket.userId,socket.id);
- 
-        socket.on('admin-send-text-to-server',({adminId,deviceId,text})=>{
-            io.to(`${clients[deviceId]}`).emit('server-send-text-from-admin',{adminId,text});
+
+        socket.on('req-chat-text',({sender,receiver,text})=>{
+            io.to(`${clients[receiver]}`).emit('res-chat-text',{sender,text});
         })
     
         socket.on('disconnect', () => {
