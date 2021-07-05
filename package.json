@@ -18,7 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "npm install",
-    "start": "nodemon  server.js"
+    "start": "nodemon --watch server.js --exec node --experimental-modules server.js"
   },
   "author": "dinhbao",
   "license": "ISC",
