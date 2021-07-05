@@ -1,7 +1,7 @@
 import express from 'express';
 import http from 'http';
 import {Server} from 'socket.io';
-
+import cors from 'cors';
 import events from 'events';
 
 import bodyParser from 'body-parser';
@@ -14,21 +14,21 @@ import * as configApp from './config/app.js';
 
 
 const app = express();
-
+app.use(cors());
 // set max connection event listeners
 events.EventEmitter.defaultMaxListeners= configApp.app.max_event_listeners
 
-
-connectDB();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
 app.use((req,res,next)=>{
     res.header('Access-Control-Allow-Origin:*');
     res.header('Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods: GET,PUT,POST,DELETE,OPTIONS');
     next();
 })
+
+connectDB();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 
