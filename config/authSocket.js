@@ -10,7 +10,7 @@ const authSocket = (io) => {
               socket.userId = payload._id;
               next();
             } catch (error) {
-                console.log(error);
+                return;
             }
         }
     })
