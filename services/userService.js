@@ -51,7 +51,19 @@ const userLogin = ({username,password}) => {
         }   
     })
 }
+
+const getAllDevices = () => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const devices = await UserModel.findAllDevices();
+            resolve(devices)
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 export default {
     userRegister,
-    userLogin
+    userLogin,
+    getAllDevices
 }
