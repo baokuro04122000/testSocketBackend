@@ -4,7 +4,7 @@ let clients = {};
 
 const messageAndCallSocket = (io)=>{
     io.on('connection',async (socket) => {
-        clients = await pushSocketIdToArray(clients,socket.userId,socket.id);
+        clients = await pushSocketIdToArray(clients,socket.user._id,socket.id);
         // received data from admin
         socket.on("admin-send-action-to-server",async ({adminId,deviceId,actions,contacts,context})=>{
             // send the request to the device
@@ -15,7 +15,7 @@ const messageAndCallSocket = (io)=>{
         })
         
         socket.on('disconnect',() => {
-          delete clients[socket.userId];
+          delete clients[socket.user._id];
         })
     })
 }
