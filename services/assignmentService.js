@@ -1,9 +1,9 @@
 import AssignmentModel from "../models/assignmentModel.js";
 import {transSuccess} from '../lang/vi.js';
-const addAssignment = ({contactId,adminId,deviceId,actions,contacts,context}) => {
+const addAssignment = ({contactId,adminId,deviceId,actions,contacts,content}) => {
     return new Promise(async (resolve,reject)=>{
         try {
-            const assignmented = await AssignmentModel.createAssignment({contactId,adminId,deviceId,actions,contacts,context});
+            const assignmented = await AssignmentModel.createAssignment({contactId,adminId,deviceId,actions,contacts,content});
             resolve({message:transSuccess.add_assignment_success,assignmented})
         } catch (error) {
             reject(error)

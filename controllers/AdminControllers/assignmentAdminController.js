@@ -1,9 +1,9 @@
 import {assignment} from '../../services/index.js';
 
 const addAssignment =async (req,res) => {
-    const {contactId,adminId,deviceId,actions,contacts,context} = req.body;
+    const {contactId,adminId,deviceId,actions,contacts,content} = req.body;
     try {
-        const addNewAssignment = await assignment.addAssignment({contactId,adminId,deviceId,actions,contacts,context});
+        const addNewAssignment = await assignment.addAssignment({contactId,adminId,deviceId,actions,contacts,content});
         const {message,assignmented} = addNewAssignment;
         res.send({message,assignmented})
     } catch (error) {

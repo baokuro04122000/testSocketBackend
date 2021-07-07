@@ -8,7 +8,7 @@ export const AssignmentSchema = new Schema(
         deviceId:{type:Schema.Types.ObjectId,ref:'User',required:true},
         actions:{type:String,required:true},
         contacts:{type:Array,required:true},
-        context:{type:String,required:true},
+        content:{type:String,required:true},
         createdAt:{type:Number,default: Date.now()},
         updatedAt:{type:Number,default:null},
         deletedAt:{type:Number,default:null}
