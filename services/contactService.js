@@ -1,10 +1,12 @@
 import ContactModel from "../models/contactModel.js";
-import {transSuccess} from '../lang/vi.js';
+import {transSuccess,transErrors} from '../lang/vi.js';
 const addContact = ({adminId,name,phones}) => {
     return new Promise(async (resolve, reject)=>{
         try {
+            const contactCreated = await ContactModel.findContactByName(name);
+            if(contactCreated) throw reject(transErrors.contact_add_existed)
             const status = await ContactModel.createContact({adminId,name,phones});
-            resolve({message:transSuccess.add_contact_success})
+            resolve({message:transSuccess.add_contact_success,data:status})
         } catch (error) {
             reject(error)
         }
