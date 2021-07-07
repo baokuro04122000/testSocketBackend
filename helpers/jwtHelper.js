@@ -6,8 +6,8 @@ export const generateToken =async (user) => {
         const token= await jwt.sign({
             _id:user._id,
             username:user.username,
+            deviceId:user.deviceId,
             isAdmin:user.isAdmin,
-           
         },
         process.env.JWT_SECRET || 'something secret',
         {

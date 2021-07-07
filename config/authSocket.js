@@ -7,7 +7,7 @@ const authSocket = (io) => {
             try {
               const token = socket.handshake.query.token;
               const payload = await jwt.verify(token, process.env.JWT_SECRET);
-              socket.userId = payload._id;
+              socket.user = payload;
               next();
             } catch (error) {
                 return;
