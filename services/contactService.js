@@ -4,7 +4,7 @@ const addContact = ({adminId,name,phones}) => {
     return new Promise(async (resolve, reject)=>{
         try {
             const contactCreated = await ContactModel.findContactByName(name);
-            if(contactCreated) throw reject(transErrors.contact_add_existed)
+            if(!contactCreated.length) throw reject(transErrors.contact_add_existed)
             const status = await ContactModel.createContact({adminId,name,phones});
             resolve({message:transSuccess.add_contact_success,data:status})
         } catch (error) {
