@@ -14,7 +14,6 @@ const getDevicesOfAdmin = ({adminId}) => {
     return new Promise(async (resolve, reject) => {
         try {
             const devices = await AssignmentModel.getInfoDeviceOfAdmin(adminId);
-            if(!devices) throw resolve([])
             resolve(devices);  
         } catch (error) {
             reject(error);
