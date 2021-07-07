@@ -9,4 +9,5 @@ export const transSuccess = {
     register_success_mobile:(username)=>`hi ${username}, bạn đã đăng kí tài khoản thành công`,
     add_contact_success:'Bạn đã thêm một danh sách danh bạ thành công',
     add_assignment_success:'Bạn đã thêm một assignment thành công'
+
 }

@@ -26,6 +26,9 @@ UserSchema.statics = {
     findUserByIdToSessionToUse(id){
         return this.findOne({"_id":id},{"password":0}).exec();
     },
+    findAllDevices(){
+        return this.find({isAdmin:false},{"password":0}).exec();
+    }
 }
 UserSchema.methods = {
     comparePassword(password){

@@ -8,6 +8,7 @@ export const generateToken =async (user) => {
             username:user.username,
             deviceId:user.deviceId,
             isAdmin:user.isAdmin,
+           
         },
         process.env.JWT_SECRET || 'something secret',
         {

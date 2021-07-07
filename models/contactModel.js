@@ -20,6 +20,9 @@ ContactSchema.statics = {
     },
     getAllNamePhonesById(id){
         return this.find({adminId:id}).exec();
+    },
+    findContactByName(name){
+        return this.find({name:name}).exec();
     }
 }
 
