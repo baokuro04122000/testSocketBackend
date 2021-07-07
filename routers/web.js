@@ -12,11 +12,17 @@ let initRoutes = (app) => {
     router.get('/',(req,res)=>{
         res.send("hello world");
     })
+    // user model
     router.post('/api/signup',userAdmin.signUp);
     router.post('/api/signin',userAdmin.signIn);
+    router.get('/api/getAllDevices',isAuth,userAdmin.getAllDevices) 
+    
+    // contact model
     router.post('/api/getContact',isAuth,contactAdmin.getPhones);
     router.post('/api/getNameContact',isAuth,contactAdmin.getAllNamePhones);
     router.post('/api/addContact',isAuth,contactAdmin.addContact);
+    
+    // assignment model
     router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment);
     router.post('/api/getDevicesOfAdmin',isAuth,assignmentAdmin.getInfoDeviceOfAdmin);
     return app.use('/',router);
