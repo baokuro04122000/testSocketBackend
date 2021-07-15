@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 export const AssignmentSchema = new Schema(
     {
-        contactId:{type:Schema.Types.ObjectId, ref:'Contact'},
         adminId:{type:Schema.Types.ObjectId,ref:'User', required:true},
         deviceId:{type:Schema.Types.ObjectId,ref:'User',required:true},
+        contactsName:{type:Array,required:true},
         actions:{type:String,required:true},
         contacts:{type:Array,required:true},
         content:{type:String,required:true},
@@ -21,7 +21,6 @@ AssignmentSchema.statics = {
     getInfoDeviceOfAdmin(id){
         return this.find({adminId:id})
         .populate('deviceId','username')
-        .populate('contactId','name')
         .populate('adminId','username')
         .exec();
     }

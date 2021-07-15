@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 export const ContactSchema = new Schema(
     {
-        adminId:{type:String, required:true},
+        adminId:{type:Schema.Types.ObjectId, required:true},
         name:{type:String,required:true, unique:true},
         phones:{type:Array,required:true},
         createdAt:{type:Number,default: Date.now()},

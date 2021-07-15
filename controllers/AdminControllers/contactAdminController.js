@@ -8,7 +8,7 @@ const addContact =async (req,res) => {
         const {message} = addNewContact;
         res.send({message})
     } catch (error) {
-        res.send({message:error})
+        res.status(401).send({message:error})
     }
 }
 const getPhones = async (req,res) => {
@@ -17,7 +17,7 @@ const getPhones = async (req,res) => {
         const phones = await contact.getPhones({name});
         res.send(phones)
     } catch (error) {
-        res.send({message:error})
+        res.status(401).send({message:error})
     }
 }
 const getAllNamePhones = async (req,res) => {
@@ -26,7 +26,7 @@ const getAllNamePhones = async (req,res) => {
         const names = await contact.getAllNamePhones({id});
         res.send({names})
     } catch (error) {
-        res.send({message:error})
+        res.status(401).send({message:error})
     }
 }
 export default {
