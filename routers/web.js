@@ -25,6 +25,7 @@ let initRoutes = (app) => {
     // assignment model
     router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment);
     router.post('/api/getDevicesOfAdmin',isAuth,assignmentAdmin.getInfoDeviceOfAdmin);
+    router.get('/api/assignment/details/:id',isAuth,assignmentAdmin.getDetailsAssignment)
     return app.use('/',router);
 }
 export default initRoutes;

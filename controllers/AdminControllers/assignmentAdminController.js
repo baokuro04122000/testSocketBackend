@@ -21,7 +21,19 @@ const getInfoDeviceOfAdmin =async (req,res) => {
         res.status(401).send({message:error})
     }
 }
+const getDetailsAssignment = async (req,res) => {
+    const {id} = req.params;
+    const adminId = req.user._id;
+    try {
+        const detailsAssignment = await assignment.getDetailsAssignment(id, adminId);
+        res.send(detailsAssignment)
+    } catch (error) {
+        console.log(error);
+        res.status(401).send({message:error});
+    }
+}
 export default {
     addAssignment,
-    getInfoDeviceOfAdmin
+    getInfoDeviceOfAdmin,
+    getDetailsAssignment
 }

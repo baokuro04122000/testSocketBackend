@@ -20,7 +20,19 @@ const getDevicesOfAdmin = ({adminId}) => {
         }
     })
 }
+
+const getDetailsAssignment = (id, adminId) => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const assignmented = await AssignmentModel.getDetailsByIdAndAdminId(id,adminId);
+            resolve(assignmented);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 export default {
     addAssignment,
-    getDevicesOfAdmin
+    getDevicesOfAdmin,
+    getDetailsAssignment
 }

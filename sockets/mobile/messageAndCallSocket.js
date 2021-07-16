@@ -13,7 +13,9 @@ const messageAndCallSocket = (io)=>{
         socket.on("MB-res-action-to-server",({adminId,status})=>{
             io.to(`${clients[adminId]}`).emit('server-res-status-action-to-admin',{status});
         })
-        
+        socket.on("MB-res-action-status-to-server",({assignmentId,contactId,adminId,status})=>{
+            io.to(`${adminId}`).emit("server-res-action-status-to-admin",{assignmentId,contactId,status});
+        })
         socket.on('disconnect',() => {
           delete clients[socket.user._id];
         })

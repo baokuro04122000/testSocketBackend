@@ -23,6 +23,12 @@ AssignmentSchema.statics = {
         .populate('deviceId','username')
         .populate('adminId','username')
         .exec();
+    },
+    getDetailsByIdAndAdminId(id, adminId){
+        return this.findOne({$and:[
+            {_id:id},
+            {adminId:adminId}
+        ]}).exec();
     }
 }
 
