@@ -23,7 +23,6 @@ const getPhones = ({name})=>{
     })
 }
 const getAllNamePhones = ({id}) => {
-
     return new Promise(async (resolve,reject)=>{
         let names=[];
         try {

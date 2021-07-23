@@ -4,7 +4,6 @@ import {transErrors, transSuccess} from '../lang/vi.js';
 import {generateToken} from '../helpers/jwtHelper.js';
 let saltRounds =  7;
 
-
 const userRegister = ({username,password,deviceId}) => {
     return new Promise(async (resolve,reject)=>{
         try {   
@@ -30,7 +29,6 @@ const userRegister = ({username,password,deviceId}) => {
         }
     })
 }
-
 
 const userLogin = ({username,password}) => {
     return new Promise(async (resolve,reject)=>{

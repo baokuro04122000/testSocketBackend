@@ -28,7 +28,16 @@ AssignmentSchema.statics = {
         return this.findOne({$and:[
             {_id:id},
             {adminId:adminId}
-        ]}).exec();
+        ]})
+        .populate('deviceId','username')
+        .populate('adminId','username')
+        .exec();
+    },
+
+
+    // process API for mobile
+    updateContactsMobile(assignmentId, contacts){
+        return this.updateOne({_id:assignmentId},{contacts:contacts}).exec();
     }
 }
 

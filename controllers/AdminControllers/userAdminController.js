@@ -5,8 +5,12 @@ const signIn =async (req,res)=>{
     try{
         const data = await user.userLogin({username,password});
         res.send(data);
-    }catch(err){
-        res.send({message: err})
+    }catch(error){
+        res.send({
+            status:401,
+            success:false,
+            message:error
+        })
     }   
 }
 const signUp = async (req,res)=>{
@@ -16,7 +20,10 @@ const signUp = async (req,res)=>{
         const data = await user.userRegister({username,password,deviceId});
         res.send(data);
     } catch (error) {
-        res.send({message:error})        
+        res.send({
+            status:401,
+            success:false,
+            message:error})        
     }
 }
 const getAllDevices =async (req,res) => {

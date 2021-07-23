@@ -31,8 +31,20 @@ const getDetailsAssignment = (id, adminId) => {
         }
     })
 }
+
+const updateContactsMB = (assignmentId, contacts) => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const updated = await AssignmentModel.updateContactsMobile(assignmentId, contacts);
+            resolve(updated);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 export default {
     addAssignment,
     getDevicesOfAdmin,
-    getDetailsAssignment
+    getDetailsAssignment,
+    updateContactsMB
 }
