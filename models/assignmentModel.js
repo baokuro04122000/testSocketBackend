@@ -38,6 +38,15 @@ AssignmentSchema.statics = {
     // process API for mobile
     updateContactsMobile(assignmentId, contacts){
         return this.updateOne({_id:assignmentId},{contacts:contacts}).exec();
+    },
+    // update for each phone number in contact
+    updateForEachContact(assignmentId,contactId,status){
+        return this.updateOne({$and:[
+            {_id:assignmentId},
+            {'contacts.id':contactId}
+        ]},
+        {'$set':{'contacts.$.status':status}})
+        .exec();
     }
 }
 

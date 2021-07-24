@@ -42,9 +42,21 @@ const updateContactsMB = (assignmentId, contacts) => {
         }
     })
 }
+
+const updateForEachStatusContact = (assignmentId,contactId, status) => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const updated = await AssignmentModel.updateForEachContact(assignmentId, contactId, status);
+            resolve(updated);
+        } catch (error) {
+            rejecct(error);
+        }
+    })
+}
 export default {
     addAssignment,
     getDevicesOfAdmin,
     getDetailsAssignment,
-    updateContactsMB
+    updateContactsMB,
+    updateForEachStatusContact
 }

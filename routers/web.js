@@ -29,6 +29,7 @@ let initRoutes = (app) => {
     router.get('/api/assignment/details/:id',isAuth,assignmentAdmin.getDetailsAssignment)
     // assignment mobile model
     router.put('/api/updateContactsMB',isAuth,assignmentMB.updateContactsMB);
+    router.put('/api/updateContactMB',isAuth,assignmentMB.updateStatusForEachContact);
     return app.use('/',router);
 }
 export default initRoutes;
