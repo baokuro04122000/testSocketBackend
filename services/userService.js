@@ -61,7 +61,7 @@ const getAllDevices = () => {
     })
 }
 const deleteUser = (username) => {
-    return new Promise((resolve, reject)=> {
+    return new Promise(async (resolve, reject)=> {
         try {
             const deleted = await UserModel.deleteUserByUsername(username);
             resolve(deleted);
