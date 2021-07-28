@@ -19,10 +19,23 @@ ContactSchema.statics = {
         return this.find({name:name}).exec();
     },
     getAllNamePhonesById(id){
-        return this.find({adminId:id}).exec();
+        return this.find({adminId:id}).sort(
+            {"createdAt":-1}).exec();
     },
     findContactByName(name){
         return this.find({name:name}).exec();
+    },
+    deleteContactById(contactId){
+        return this.deleteOne({
+            "_id":contactId
+        }).exec();
+    }, 
+    updateContactById(contactId, contacts, name){
+        return this.updateOne({"_id":contactId},{
+            name:name,
+            phones:contacts,
+            updatedAt:Date.now()
+        }).exec();
     }
 }
 

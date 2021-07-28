@@ -28,14 +28,45 @@ const getAllNamePhones = ({id}) => {
         try {
             const data = await ContactModel.getAllNamePhonesById(id);
             data.map((device)=>names.push(device.name));
-            resolve(names);
+            resolve({data,
+                names});
         } catch (error) {
             reject(error)   
+        }
+    })
+}
+const deleteContact = (contactId) => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const deleted = await ContactModel.deleteContactById(contactId);
+            resolve({
+                status:200,
+                success:true,
+                message:"successful deleting"
+            })
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+const updateContact = (contactId, contacts, name) => {
+    return new Promise(async (resolve, reject)=> {
+        try {
+            const updated = await ContactModel.updateContactById(contactId, contacts, name);
+            resolve({
+                status:200,
+                success:true,
+                message:"successful editing"
+            })
+        } catch (error) {
+            reject(error);
         }
     })
 }
 export default {
     addContact,
     getPhones,
-    getAllNamePhones
+    getAllNamePhones,
+    deleteContact,
+    updateContact
 }

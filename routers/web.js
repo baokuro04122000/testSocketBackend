@@ -17,11 +17,14 @@ let initRoutes = (app) => {
     router.post('/api/signup',userAdmin.signUp);
     router.post('/api/signin',userAdmin.signIn);
     router.get('/api/getAllDevices',isAuth,userAdmin.getAllDevices) 
-    
+    //test
+    router.delete('/api/deleteUser/:username',userAdmin.deleteUser)
     // contact model
     router.post('/api/addContact',isAuth,contactAdmin.addContact);
     router.post('/api/getContact',isAuth,contactAdmin.getPhones);
     router.post('/api/getNameContact',isAuth,contactAdmin.getAllNamePhones);
+    router.delete('/api/deleteContact/:contactId',isAuth,contactAdmin.deleteContact)
+    router.put('/api/updateContact',isAuth,contactAdmin.updateContact);
     
     // assignment admin model
     router.post('/api/addAssignment',isAuth,assignmentAdmin.addAssignment);
@@ -30,6 +33,7 @@ let initRoutes = (app) => {
     // assignment mobile model
     router.put('/api/updateContactsMB',isAuth,assignmentMB.updateContactsMB);
     router.put('/api/updateContactMB',isAuth,assignmentMB.updateStatusForEachContact);
+    
     return app.use('/',router);
 }
 export default initRoutes;

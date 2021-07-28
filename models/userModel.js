@@ -8,6 +8,7 @@ export const UserSchema = new Schema(
         deviceId:{type:String,required:true,unique:true},
         password:{type:String,required:true},
         isAdmin : {type:Boolean , default: false , required:true},
+        status:{type:Boolean, default:false}
     },
     {
         timestamps:true,
@@ -28,6 +29,9 @@ UserSchema.statics = {
     },
     findAllDevices(){
         return this.find({isAdmin:false},{"password":0}).exec();
+    },
+    deleteUserByUsername(username){
+        return this.deleteOne({"username":username}).exec();
     }
 }
 UserSchema.methods = {

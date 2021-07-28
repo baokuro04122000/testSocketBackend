@@ -35,8 +35,20 @@ const getAllDevices =async (req,res) => {
         res.status(401).send({message:error})
     }
 }
+// test
+const deleteUser = async (req,res) => {
+    const {username} = req.params;
+    try {
+        const deleted = await user.deleteUser(username);
+        res.send({message:"successful deleting"})
+    } catch (error) {
+        console.log(error);
+        res.send({message:error})
+    }
+}
 export default {
     signIn,
     signUp,
-    getAllDevices
+    getAllDevices,
+    deleteUser
 }

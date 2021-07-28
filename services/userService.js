@@ -60,8 +60,19 @@ const getAllDevices = () => {
         }
     })
 }
+const deleteUser = (username) => {
+    return new Promise((resolve, reject)=> {
+        try {
+            const deleted = await UserModel.deleteUserByUsername(username);
+            resolve(deleted);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 export default {
     userRegister,
     userLogin,
-    getAllDevices
+    getAllDevices,
+    deleteUser
 }
