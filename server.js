@@ -37,7 +37,17 @@ initRoutes(app);
 
 
 const httpServer = http.Server(app)
-const io = new Server(httpServer, {cors:{origin:"*"}});
+const io = new Server(httpServer,
+    {
+         cors:{
+            origin:"https://backend-socketio.herokuapp.com",
+            methods: ["GET", "POST"],
+            credentials: true,
+            transports: ['websocket', 'polling']
+        },
+         allowEIO3: true
+    } 
+);
 
 // config authenticate through socket
 authSocket(io);
