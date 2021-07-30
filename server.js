@@ -40,7 +40,7 @@ const httpServer = http.Server(app)
 const io = new Server(httpServer,
     {
          cors:{
-            origin:"https://backend-socketio.herokuapp.com",
+            origin:"*",
             methods: ["GET", "POST"],
             credentials: true,
             transports: ['websocket', 'polling']
