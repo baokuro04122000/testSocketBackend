@@ -1,12 +1,9 @@
 
-import {pushSocketIdToArray} from '../../helpers/socketHelper.js';
 
-let clients = {};
 
-const onlineOfflineUsers = (io)=>{
-    io.on('connection',async (socket) => {
-        clients =await pushSocketIdToArray(clients,socket.user._id,socket.id);
-        console.log(clients);
+const onlineOfflineUsers = (io, socket, clients)=>{
+  
+ 
         //Emit to user after login of f5 web page
         io.emit("server-send-when-new-device-online",socket.user);
         socket.on('check-status',()=>{
@@ -15,10 +12,6 @@ const onlineOfflineUsers = (io)=>{
           io.emit("server-send-list-device-online",listDeviceOnline);
         });
 
-        socket.on('disconnect', () => {
-          delete clients[socket.user._id];
-          io.emit("server-send-device-disconnect",socket.user._id);
-        })
-    })
+
 }
 export default onlineOfflineUsers;

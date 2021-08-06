@@ -16,7 +16,7 @@ import * as configApp from './config/app.js';
 const app = express();
 app.use(cors());
 // set max connection event listeners
-events.EventEmitter.defaultMaxListeners= configApp.app.max_event_listeners
+events.EventEmitter.setMaxListeners(configApp.app.max_event_listeners);
 
 app.use((req,res,next)=>{
     res.header('Access-Control-Allow-Origin:*');
@@ -40,12 +40,12 @@ const httpServer = http.Server(app)
 const io = new Server(httpServer,
     {
          cors:{
-            origin:"http://localhost:3000",
+            origin:"*",
             methods: ["GET", "POST"],
             credentials: true,
             transports: ['websocket', 'polling']
-        },
-         allowEIO3: true
+        }
+        
     } 
 );
 

@@ -35,6 +35,16 @@ const getAllDevices =async (req,res) => {
         res.status(401).send({message:error})
     }
 }
+const updateStatus =async (req,res) =>{
+    const {deviceId,status} = req.body;
+    try {
+        const updated = await user.updateStatus(deviceId,status);
+        res.send({message:"successful updating"});        
+    } catch (error) {
+        console.log(error);
+        res.status(401).send({message:error});
+    }
+}
 // test
 const deleteUser = async (req,res) => {
     const {username} = req.params;
@@ -50,5 +60,6 @@ export default {
     signIn,
     signUp,
     getAllDevices,
-    deleteUser
+    deleteUser,
+    updateStatus
 }

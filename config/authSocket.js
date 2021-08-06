@@ -3,15 +3,21 @@ import dotenv from 'dotenv';
 dotenv.config();
 const authSocket = (io) => {
     io.use(async (socket, next) => {
-        if(socket.handshake.query.token) {
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+        });
+        if(socket.handshake.auth.token) {
             try {
-              const token = socket.handshake.query.token;
+              const token = socket.handshake.auth.token;
               const payload = await jwt.verify(token, process.env.JWT_SECRET);
               socket.user = payload;
               next();
             } catch (error) {
-                return;
+                console.log(error)
+                socket.disconnect(true);
             }
+        }else{
+            socket.disconnect(true);
         }
     })
 }

@@ -17,6 +17,7 @@ let initRoutes = (app) => {
     router.post('/api/signup',userAdmin.signUp);
     router.post('/api/signin',userAdmin.signIn);
     router.get('/api/getAllDevices',isAuth,userAdmin.getAllDevices) 
+    router.post('/api/updateStatus',userAdmin.updateStatus);
     //test
     router.delete('/api/deleteUser/:username',isAuth,userAdmin.deleteUser)
     // contact model

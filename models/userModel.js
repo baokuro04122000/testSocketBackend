@@ -30,6 +30,10 @@ UserSchema.statics = {
     findAllDevices(){
         return this.find({isAdmin:false},{"password":0}).exec();
     },
+    updateStatusById(deviceId, status){
+        return this.updateOne({"_id":deviceId},{"status":status}).exec();
+    }
+    ,
     deleteUserByUsername(username){
         return this.deleteOne({"username":username}).exec();
     }

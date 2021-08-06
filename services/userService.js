@@ -35,7 +35,7 @@ const userLogin = ({username,password}) => {
         const userInfo = await UserModel.findUserByUsername(username);
         if(!userInfo) throw reject('Invalid email or password');
         const checkPass = await userInfo.comparePassword(password);
-        if(checkPass){
+        if(checkPass){ 
             resolve({
                 _id:userInfo._id,
                 message:transSuccess.login_success_mobile(userInfo.username),
@@ -60,6 +60,16 @@ const getAllDevices = () => {
         }
     })
 }
+const updateStatus = (deviceId,status) => {
+    return new Promise(async (resolve, reject)=>{
+        try {
+            const updated = await UserModel.updateStatusById(deviceId, status);
+            resolve();
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
 const deleteUser = (username) => {
     return new Promise(async (resolve, reject)=> {
         try {
@@ -74,5 +84,6 @@ export default {
     userRegister,
     userLogin,
     getAllDevices,
-    deleteUser
+    deleteUser,
+    updateStatus
 }

@@ -1,8 +1,8 @@
-
+import UserModel from '../models/userModel.js';
 export let pushSocketIdToArray = (clients,userId,socketId) => {
    return new Promise((resolve)=>{
-        clients[userId] = [socketId];
-        resolve(clients);
+      clients[userId] = [socketId];
+      resolve(clients);
    })
 };
   
@@ -26,3 +26,11 @@ export let pushSocketIdToArray = (clients,userId,socketId) => {
         resolve(clients);
     })
   };
+
+  export let updateStatus =async (deviceId,status) => {
+    try {
+      await UserModel.updateStatusById(deviceId,status);
+    } catch (error) {
+      console.log(error);
+    }
+  }
