@@ -43,8 +43,8 @@ const io = new Server(httpServer,
             origin:"*",
             methods: ["GET", "POST"],
             credentials: true,
-            transports: ['websocket', 'polling']
-        }
+        },
+        transports: ['websocket']
         
     } 
 );
